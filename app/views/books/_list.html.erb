@@ -1,0 +1,31 @@
+<div class="col-xs-3">
+	<h2>User info</h2>
+	<%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "100x100" %>
+		<table class="table hover">
+			<tbody>
+			<tr>
+				<th>name</th>
+				<th><%= user.name %></th>
+			</tr>
+			<tr>
+				<th>introduction</th>
+				<th><%= user.introduction %></th>
+			</tr>
+			</tbody>
+		</table>
+		<div class="row">
+			<% if user == current_user %>
+			<%= link_to "", edit_user_path(current_user), class:"btn btn-default btn-block glyphicon glyphicon-wrench" %>
+			<% else %>
+			<%= link_to "", user_path(current_user), class:"btn btn-default btn-block glyphicon glyphicon-wrench" %>
+			<% end %>
+		</div>
+		<h2>New book</h2>
+		<%= form_for(book) do |f| %>
+		<h4>Title</h4>
+		<%= f.text_field :title, :class => "form-control" %>
+		<h4>Opinion</h4>
+		<%= f.text_area :body, :class => "form-control" %>
+		<%= f.submit 'Create Book', class:"btn btn-primary btn-block", notice: "You have created book successfully." %>
+		<% end %>
+</div>
